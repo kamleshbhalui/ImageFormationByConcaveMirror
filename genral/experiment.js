@@ -322,9 +322,11 @@ function loadExperimentElements() {
     myImgPositionX1=getPositionOfImageX();
     myImgPositionY1=0;
     myImgPositionX2=myImgPositionX1;
-    myImgPositionY2 =getHeightOfImageY(x1);
+    myImgPositionY2 =getHeightOfImageY(myImgPositionX1);
 
-
+console.log("myImgPositionX1"+myImgPositionX1);
+    console.log("myImgPositiony2"+myImgPositionY2);
+    console.log("myObjheight"+myObjPositionX1);
     //Incoming Ray After Reflection From Mirror
     var sourcePos = new THREE.Vector3(x, myObjPositionY2, 0);
     var targetPos = new THREE.Vector3(myImgPositionX2, myImgPositionY2, 0);
