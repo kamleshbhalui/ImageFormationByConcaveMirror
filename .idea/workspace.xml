@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="BookmarkManager">
-    <bookmark url="file://$PROJECT_DIR$/genral/experiment.js" line="344" />
+    <bookmark url="file://$PROJECT_DIR$/genral/experiment.js" line="334" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c75f0416-fe16-4e78-ad66-f9a223b1d624" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/genral/experiment.js" afterPath="$PROJECT_DIR$/genral/experiment.js" />
     </list>
     <ignored path="prj.iws" />
@@ -33,10 +32,10 @@
       <file leaf-file-name="experiment.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/genral/experiment.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="385">
-              <caret line="324" column="54" selection-start-line="324" selection-start-column="54" selection-end-line="324" selection-end-column="54" />
+            <state relative-caret-position="255">
+              <caret line="101" column="4" selection-start-line="101" selection-start-column="4" selection-end-line="101" selection-end-column="4" />
               <folding>
-                <marker date="1489999926730" expanded="true" signature="2044:2370" ph="..." />
+                <marker date="1490005411563" expanded="true" signature="1904:2230" ph="..." />
               </folding>
             </state>
           </provider>
@@ -45,7 +44,15 @@
     </leaf>
   </component>
   <component name="Git.Settings">
+    <option name="PREVIOUS_COMMIT_AUTHORS">
+      <list>
+        <option value="kamlesh &lt;kamleshbhalui@gmail.com&gt;" />
+      </list>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="PUSH_TAGS">
+      <GitPushTagMode />
+    </option>
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
@@ -195,12 +202,20 @@
       <workItem from="1489756304923" duration="37086000" />
       <workItem from="1489901058034" duration="1490000" />
       <workItem from="1489902658369" duration="86000" />
-      <workItem from="1489902881448" duration="35011000" />
+      <workItem from="1489902881448" duration="38388000" />
     </task>
+    <task id="LOCAL-00001" summary="Small modification">
+      <created>1490000006821</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1490000006821</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="95891000" />
+    <option name="totallyTimeSpent" value="99268000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="784" extended-state="6" />
@@ -235,6 +250,10 @@
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
   </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Small modification" />
+    <option name="LAST_COMMIT_MESSAGE" value="Small modification" />
+  </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
     <watches-manager />
@@ -245,7 +264,7 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <marker date="1489999926730" expanded="true" signature="2044:2370" ph="..." />
+            <marker date="1490005411563" expanded="true" signature="1904:2230" ph="..." />
           </folding>
         </state>
       </provider>
@@ -255,7 +274,7 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <marker date="1489999926730" expanded="true" signature="2044:2370" ph="..." />
+            <marker date="1490005411563" expanded="true" signature="1904:2230" ph="..." />
           </folding>
         </state>
       </provider>
@@ -265,24 +284,7 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <marker date="1489999926730" expanded="true" signature="2044:2370" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/genral/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/genral/experiment.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <marker date="1489999926730" expanded="true" signature="2044:2370" ph="..." />
+            <marker date="1490005411563" expanded="true" signature="1904:2230" ph="..." />
           </folding>
         </state>
       </provider>
@@ -299,7 +301,24 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <marker date="1489999926730" expanded="true" signature="2044:2370" ph="..." />
+            <marker date="1490005411563" expanded="true" signature="1904:2230" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/genral/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/genral/experiment.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <marker date="1490005411563" expanded="true" signature="1904:2230" ph="..." />
           </folding>
         </state>
       </provider>
@@ -373,10 +392,10 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/genral/experiment.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="385">
-          <caret line="324" column="54" selection-start-line="324" selection-start-column="54" selection-end-line="324" selection-end-column="54" />
+        <state relative-caret-position="255">
+          <caret line="101" column="4" selection-start-line="101" selection-start-column="4" selection-end-line="101" selection-end-column="4" />
           <folding>
-            <marker date="1489999926730" expanded="true" signature="2044:2370" ph="..." />
+            <marker date="1490005411563" expanded="true" signature="1904:2230" ph="..." />
           </folding>
         </state>
       </provider>

@@ -97,11 +97,6 @@ function handleX(newValue) {
     PIErender();
 }
 
-function handleY(newValue) {
-    myObjPositionY1=newValue;
-    myObject.position.set(myObjPositionX1,myObjPositionY1,0);
-    PIErender();
-}
 
 function handleH(newValue) {
     myObjPositionY2=newValue;
@@ -114,9 +109,9 @@ function handleH(newValue) {
 }
 
 function initialiseControlVariables() {
-    ObjectPosX="X";
-    ObjectPosY="Y";
-    ObjectHeight="H";
+    ObjectPosX="u";
+
+    ObjectHeight="oh";
     ObjectdefaultPosX=-5;
     ObjectdefaultPosY=0;
     ObjectDefaultHeight=0.6;
@@ -125,7 +120,7 @@ function initialiseControlVariables() {
     ObjectXPositionStep=0.5;
     ObjectHeightStep=0.1;
     ObjectMinPositionX=-5;
-    ObjectMaxPositionX=0;
+    ObjectMaxPositionX=-0.5;
     myImgPositionX1=NaN;
     myImgPositionX2=myImgPositionX1;
     myImgPositionY1=0;
@@ -144,10 +139,8 @@ function  initialiseControls() {
     initialiseControlVariables();
     PIEaddInputSlider(ObjectPosX,ObjectdefaultPosX,handleX,ObjectMinPositionX,ObjectMaxPositionX,ObjectXPositionStep);
     PIEaddInputSlider(ObjectHeight,ObjectDefaultHeight,handleH,ObjectMinHeight,ObjectMaxHeight,ObjectHeightStep);
-    PIEaddInputSlider(ObjectPosY,ObjectdefaultPosY,handleY,0,0,0);
 
     PIEaddDisplayText(ObjectPosX,ObjectdefaultPosX);
-    PIEaddDisplayText(ObjectPosY,ObjectdefaultPosY);
     PIEaddDisplayText(ObjectHeight,ObjectDefaultHeight);
 
     // PIEaddDisplayText(ImagePosX,myImgPositionX1);
@@ -324,9 +317,6 @@ function loadExperimentElements() {
     myImgPositionX2=myImgPositionX1;
     myImgPositionY2 =getHeightOfImageY(myImgPositionX1);
 
-console.log("myImgPositionX1"+myImgPositionX1);
-    console.log("myImgPositiony2"+myImgPositionY2);
-    console.log("myObjheight"+myObjPositionX1);
     //Incoming Ray After Reflection From Mirror
     var sourcePos = new THREE.Vector3(x, myObjPositionY2, 0);
     var targetPos = new THREE.Vector3(myImgPositionX2, myImgPositionY2, 0);
@@ -400,8 +390,13 @@ function updateExperimentElements(t,dt) {
         }
     }
 
-    myObject.position.set(myObjPositionX1,myObjPositionY1,0);
+   myObject.position.set(myObjPositionX1,myObjPositionY1,0);
 
+    var x=getPositionOfInterSectionX(myObjPositionY2);
+    var sourcePos = new THREE.Vector3(myObjPositionX1, myObjPositionY1, 0);
+    var targetPos = new THREE.Vector3(x, myObjPositionY2, 0);
+    var direction = new THREE.Vector3().subVectors(targetPos, sourcePos);
+    myRayParallelToPrincipleLine = new THREE.ArrowHelper(direction.clone().normalize(), sourcePos, direction.length(), 0x00ff00);
 
     PIEchangeDisplayText(ObjectPosX,myObjPositionX1);
     PIEchangeDisplayText(ObjectPosY,myObjPositionY1);
