@@ -56,20 +56,6 @@ var princpleAxisStartY;
 var principleAxisEndX;
 var principleAxisEndY;
 
-
-
-//Dragging the Objects
-
-function myObjectsDrag(element,newpos) {
-    myObjPositionX1=newpos.x;
-    if(newpos.x>=princepleAxisStartX&&newpos.x<=myMirrorVertexX)
-        myObjPositionX1=newpos.x;
-    else
-        myObjPositionX1=myMirrorCenterX;
-    myObject.position.set(myObjPositionX1,0,0);
-}
-
-
 //gui control objects
 
 var ObjectPosX;
@@ -92,19 +78,28 @@ var ImageHeight;
 var ImageOrientation;
 //handle x positions slider
 function handleX(newValue) {
-    myObjPositionX1=newValue;
-    myObject.position.set(myObjPositionX1,0,0);
+    myObjPositionX2=myObjPositionX1=newValue;
+    myObject.position.set(myObjPositionX1,myObjPositionY1,0);
+    var x1=getPositionOfInterSectionX(myObjPositionY2);
+    myRayParallelToPrincipleLine.setLength(Math.abs(Math.abs(myObjPositionX2)-Math.abs(x1)));
+    myRayParallelToPrincipleLine.position.set(myObjPositionX2,myObjPositionY2,0);
+    myRefRayThroughFocusPoint.position.set(x1,myObjPositionY2,0);
+    myRayThroughFocusPoint.position.set(myObjPositionX2,myObjPositionY2,0);
     PIErender();
 }
 
 
 function handleH(newValue) {
     myObjPositionY2=newValue;
-    var source=new THREE.Vector3(myObjPositionX1,myObjPositionY1,0);
-    var target=new THREE.Vector3(myObjPositionX2,myObjPositionY2,0);
-    var direction=new THREE.Vector3().sub(target,source);
-    myObject=new THREE.ArrowHelper(direction.clone().normalize(),source,direction.length(),0x00ff00);
-    myObjHeight=myObjPositionY2;
+    myObject.setLength(Math.abs(myObjPositionY2));
+    myObjHeight=Math.abs(myObjPositionY2);
+    myObject.position.set(myObjPositionX1,myObjPositionY1,0);
+    var x1=getPositionOfInterSectionX(myObjPositionY2);
+    myRayParallelToPrincipleLine.setLength(Math.abs(Math.abs(myObjPositionX2)-Math.abs(x1)));
+    myRayParallelToPrincipleLine.position.set(myObjPositionX2,myObjPositionY2,0);
+    myRefRayThroughFocusPoint.position.set(x1,myObjPositionY2,0);
+    myRayThroughFocusPoint.position.set(myObjPositionX2,myObjPositionY2,0);
+
     PIErender();
 }
 

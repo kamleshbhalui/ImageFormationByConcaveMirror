@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="BookmarkManager">
-    <bookmark url="file://$PROJECT_DIR$/genral/experiment.js" line="334" />
+    <bookmark url="file://$PROJECT_DIR$/genral/experiment.js" line="329" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c75f0416-fe16-4e78-ad66-f9a223b1d624" name="Default" comment="">
@@ -32,10 +32,10 @@
       <file leaf-file-name="experiment.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/genral/experiment.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="101" column="4" selection-start-line="101" selection-start-column="4" selection-end-line="101" selection-end-column="4" />
+            <state relative-caret-position="589">
+              <caret line="321" column="38" selection-start-line="321" selection-start-column="38" selection-end-line="321" selection-end-column="38" />
               <folding>
-                <marker date="1490005411563" expanded="true" signature="1904:2230" ph="..." />
+                <marker date="1490017038426" expanded="true" signature="2006:2537" ph="..." />
               </folding>
             </state>
           </provider>
@@ -202,7 +202,7 @@
       <workItem from="1489756304923" duration="37086000" />
       <workItem from="1489901058034" duration="1490000" />
       <workItem from="1489902658369" duration="86000" />
-      <workItem from="1489902881448" duration="38388000" />
+      <workItem from="1489902881448" duration="46097000" />
     </task>
     <task id="LOCAL-00001" summary="Small modification">
       <created>1490000006821</created>
@@ -211,11 +211,18 @@
       <option name="project" value="LOCAL" />
       <updated>1490000006821</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Small modification">
+      <created>1490005429191</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1490005429191</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="99268000" />
+    <option name="totallyTimeSpent" value="106977000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="784" extended-state="6" />
@@ -264,7 +271,7 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <marker date="1490005411563" expanded="true" signature="1904:2230" ph="..." />
+            <marker date="1490017038426" expanded="true" signature="2006:2537" ph="..." />
           </folding>
         </state>
       </provider>
@@ -274,7 +281,7 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <marker date="1490005411563" expanded="true" signature="1904:2230" ph="..." />
+            <marker date="1490017038426" expanded="true" signature="2006:2537" ph="..." />
           </folding>
         </state>
       </provider>
@@ -284,24 +291,7 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <marker date="1490005411563" expanded="true" signature="1904:2230" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/genral/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/genral/experiment.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <marker date="1490005411563" expanded="true" signature="1904:2230" ph="..." />
+            <marker date="1490017038426" expanded="true" signature="2006:2537" ph="..." />
           </folding>
         </state>
       </provider>
@@ -318,7 +308,24 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <marker date="1490005411563" expanded="true" signature="1904:2230" ph="..." />
+            <marker date="1490017038426" expanded="true" signature="2006:2537" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/genral/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/genral/experiment.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <marker date="1490017038426" expanded="true" signature="2006:2537" ph="..." />
           </folding>
         </state>
       </provider>
@@ -392,10 +399,10 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/genral/experiment.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="101" column="4" selection-start-line="101" selection-start-column="4" selection-end-line="101" selection-end-column="4" />
+        <state relative-caret-position="589">
+          <caret line="321" column="38" selection-start-line="321" selection-start-column="38" selection-end-line="321" selection-end-column="38" />
           <folding>
-            <marker date="1490005411563" expanded="true" signature="1904:2230" ph="..." />
+            <marker date="1490017038426" expanded="true" signature="2006:2537" ph="..." />
           </folding>
         </state>
       </provider>
