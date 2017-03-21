@@ -21,6 +21,7 @@ var myRayParallelToPrincipleLine;
 var myRefRayThroughFocusPoint;
 var dottedRayViaCenter;
 var dottedRayViaFocus;
+var dottedLineCreated;
 
 //Object Variable
 var myObjHeight;
@@ -79,24 +80,43 @@ var ImageOrientation;
 //handle x positions slider
 function handleX(newValue) {
     myObjPositionX2=myObjPositionX1=newValue;
-    myObject.position.set(myObjPositionX1, myObjPositionY1, 0);
+    myObject.position.set(myObjPositionX2, myObjPositionY1, 0);
+
+
+    dynamicChange();
+
+    PIErender();
+}
+
+function dynamicChange()
+{
     var x1 = getPositionOfInterSectionX(myObjPositionY2);
     myRayParallelToPrincipleLine.setLength(Math.abs(Math.abs(myObjPositionX2) - Math.abs(x1)));
     myRayParallelToPrincipleLine.position.set(myObjPositionX2, myObjPositionY2, 0);
+
+    var source =new THREE.Vector3(x1, myObjPositionY2, 0);
+    var target=new THREE.Vector3(myMirrorFocalPointX,myMirrorFocalPointY,0);
+    var direction=new THREE.Vector3().subVectors(target,source);
+    myRefRayThroughFocusPoint.setDirection(direction.clone().normalize());
     myRefRayThroughFocusPoint.position.set(x1, myObjPositionY2, 0);
+    myRefRayThroughFocusPoint.setLength(14,0.5,0.2);
 
     var source =new THREE.Vector3(myObjPositionX2, myObjPositionY2, 0);
     var target=new THREE.Vector3(myMirrorCenterX,myMirrorCenterY,0);
     var direction=new THREE.Vector3().subVectors(target,source);
     myRayThroughCenter.setDirection(direction.clone().normalize());
     myRayThroughCenter.position.set(myObjPositionX2, myObjPositionY2, 0);
+    myRayThroughCenter.setLength(14,0.5,0.2);
     var x2 = intersectionByCircle();
-    console.log("x2222222222"+x2);
+    console.log("x2222222222:"+x2);
     var source =new THREE.Vector3(myObjPositionX2, myObjPositionY2, 0);
     var target=new THREE.Vector3(x2[0],x2[1],0);
     var direction=new THREE.Vector3().subVectors(target,source);
     myRefRayThroughCenter.setDirection(direction.clone().normalize());
+    //myRefRayThroughCenter.setLength(Math.sqrt(Math.pow(x2[0]-myObjPositionX2,2)+Math.pow(x2[1]-myObjPositionY2),2));
     myRefRayThroughCenter.position.set(myObjPositionX2, myObjPositionY2, 0);
+    //var d=Math.sqrt(Math.pow(x2[0]-myObjPositionX2,2)+Math.pow(x2[1]-myObjPositionY2),2);
+    myRefRayThroughCenter.setLength(0,0,0);
     // myImgPositionX1=myImgPositionX2=getPositionOfImageX();
     // myImgPositionY2=getHeightOfImageY(myImgPositionX1);
     var x11 = twoLineIntersectionPoint(x1);
@@ -104,76 +124,52 @@ function handleX(newValue) {
     var target=new THREE.Vector3(x11[0],x11[1],0);
     var direction=new THREE.Vector3().subVectors(target,source);
     myImage.setDirection(direction.clone().normalize());
-
     myImage.position.set(x11[0], 0, 0);
     myImage.setLength(Math.abs(x11[1]));
     //  var x2=getPositionOfInterSectionX(myImgPositionY2);
     //myRefRayThroughCenter.setLength(Math.sqrt(Math.pow(x2[0]-myObjPositionX2,2)+Math.pow(x2[1]-myObjPositionY2),2));
     if(myObjPositionX2>myMirrorFocalPointX)
     {
-        var source =new THREE.Vector3(x2[0], x2[1], 0);
+        var source =new THREE.Vector3(myObjPositionX2, myObjPositionY2, 0);
         var target=new THREE.Vector3(x11[0],x11[1],0);
         var direction=new THREE.Vector3().subVectors(target,source);
-        if(dottedRayViaCenter==undefined)
-            dottedRayViaCenter=new THREE.ArrowHelper(direction.clone().normalize(),source,direction.length(),0xfafaaf,0.1,0.1);
-        else
+        // if(!dottedLineCreated)
+        //     dottedRayViaCenter=new THREE.ArrowHelper(direction.clone().normalize(),source,direction.length(),0xfafaaf,0.1,0.1);
+        // else
         dottedRayViaCenter.setDirection(direction.clone().normalize());
+        dottedRayViaCenter.position.set(myObjPositionX2,myObjPositionY2,0);
 
+        dottedRayViaCenter.setLength(10,0,0);
         var source =new THREE.Vector3(x1, myObjPositionY2, 0);
         var target=new THREE.Vector3(x11[0],x11[1],0);
         var direction=new THREE.Vector3().subVectors(target,source);
-        if(dottedRayViaFocus==undefined)
-            dottedRayViaFocus=new THREE.ArrowHelper(direction.clone().normalize(),source,direction.length(),0xfafaaf,0.1,0.1);
-        else
-            dottedRayViaFocus.setDirection(direction.clone().normalize());
+        // if(!dottedLineCreated)
+        //     dottedRayViaFocus=new THREE.ArrowHelper(direction.clone().normalize(),source,direction.length(),0xfafaaf,0.1,0.1);
+        // else
+        dottedRayViaFocus.setDirection(direction.clone().normalize());
+        dottedRayViaFocus.position.set(x1,myObjPositionY2,0);
+        dottedRayViaFocus.setLength(10,0,0);
 
 
+        // // dottedLineCreated=true;
+        // dottedRayViaCenter.setLength(10);
+        // dottedRayViaFocus.setLength(10);
     }
     else {
-        if(dottedRayViaCenter!=undefined) {
+        //if(dottedLineCreated) {
 
 
-            dottedRayViaCenter.setLength(0);
-            dottedRayViaFocus.setLength(0);
-        }
+        dottedRayViaCenter.setLength(0);
+        dottedRayViaFocus.setLength(0);
+        // }
     }
-    PIErender();
 }
-
-
 function handleH(newValue) {
     myObjPositionY2=newValue;
     myObject.setLength(Math.abs(myObjPositionY2));
     myObjHeight=Math.abs(myObjPositionY2);
-    myObject.position.set(myObjPositionX1,myObjPositionY1,0);
-    var x1=getPositionOfInterSectionX(myObjPositionY2);
-    myRayParallelToPrincipleLine.setLength(Math.abs(Math.abs(myObjPositionX2)-Math.abs(x1)));
-    myRayParallelToPrincipleLine.position.set(myObjPositionX2,myObjPositionY2,0);
-    myRefRayThroughFocusPoint.position.set(x1,myObjPositionY2,0);
-
-    var source=new THREE.Vector3(myObjPositionX2,myObjPositionY2,0);
-    var target=new THREE.Vector3(myMirrorCenterX,myMirrorCenterY,0);
-    var direction=new THREE.Vector3().sub(target,source);
-    myRayThroughCenter.setDirection(direction.clone().normalize());
-    myRayThroughCenter.position.set(myObjPositionX2,myObjPositionY2,0);
-    // myImgPositionX1=myImgPositionX2=getPositionOfImageX();
-    // myImgPositionY2=getHeightOfImageY(myImgPositionX1);
- var x2=intersectionByCircle();
-    var source=new THREE.Vector3(myObjPositionX2,myObjPositionY2,0);
-    var target=new THREE.Vector3(x2[0],x2[1],0);
-    var direction=new THREE.Vector3().sub(target,source);
-    myRefRayThroughCenter.setDirection(direction.clone().normalize());
-    myRefRayThroughCenter.position.set(myObjPositionX2,myObjPositionX2,0);
-    var x11=twoLineIntersectionPoint(x1);
-
-    var source=new THREE.Vector3(x11[0],0,0);
-    var target=new THREE.Vector3(x11[0],x11[1],0);
-    var direction=new THREE.Vector3().sub(target,source);
-    myImage.setDirection(direction.clone().normalize());
-    myImage.setLength(Math.abs(x1[1]));
-    myImage.position.set(x1[0],0,0);
-   // var x2=getPositionOfInterSectionX(myImgPositionY2);
-
+    myObject.position.set(myObjPositionX2,myObjPositionY1,0);
+   dynamicChange();
     PIErender();
 }
 
@@ -181,26 +177,26 @@ function initialiseControlVariables() {
     ObjectPosX="u";
 
     ObjectHeight="oh";
-    ObjectdefaultPosX=-5;
+    ObjectdefaultPosX=-1;
     ObjectdefaultPosY=0;
-    ObjectDefaultHeight=0.6;
+    ObjectDefaultHeight=0.5;
     ObjectMinHeight=0.5;
-    ObjectMaxHeight=2.0;
+    ObjectMaxHeight=1.5;
     ObjectXPositionStep=0.5;
     ObjectHeightStep=0.1;
     ObjectMinPositionX=-6;
     ObjectMaxPositionX=-1.0;
-    myImgPositionX1=NaN;
-    myImgPositionX2=myImgPositionX1;
-    myImgPositionY1=0;
-    myImgPositionY2=NaN;
-    myImgHeight=undefined;
-    myImageType=undefined;
-    myImageOrientation=undefined;
-    ImagePosX="IX";
-    ImageHeight="IH";
-    ImageOrientation="IO";
-    ImageType="IT";
+    // myImgPositionX1=NaN;
+    // myImgPositionX2=myImgPositionX1;
+    // myImgPositionY1=0;
+    // myImgPositionY2=NaN;
+    // myImgHeight=undefined;
+    // myImageType=undefined;
+    // myImageOrientation=undefined;
+    // ImagePosX="IX";
+    // ImageHeight="IH";
+    // ImageOrientation="IO";
+    // ImageType="IT";
 
 }
 
@@ -221,16 +217,38 @@ function  initialiseControls() {
 var helpContent;
 function initialiseHelp() {
     helpContent="";
-    helpContent=helpContent+"<h1>Image Formation by concave mirror help</h1>";
-    helpContent=helpContent+"<h3>About the Experiment</h3>";
+    helpContent = helpContent + "<h2>Image Formation By Concave Mirror experiment help</h2>";
+    helpContent = helpContent + "<h3>About the experiment</h3>";
+    helpContent = helpContent + "<p>The experiment shows a object on principle axis which is movable and shrinkable on principle axis  .</p>";
+    helpContent = helpContent + "<h3>Animation control</h3>";
+    helpContent = helpContent + "<p>The top right of window  has animation controls.</p>";
+    helpContent=helpContent + "<p>  You have access to two sliders.</p>";
+    helpContent = helpContent + "<p>You can control the following:</p>";
+    helpContent = helpContent + "<ul>";
+    helpContent = helpContent + "<li>u&nbsp;&nbsp;:&nbsp;Controls the X position of the object on principle axis.</li>";
+    helpContent = helpContent + "<li>oh&nbsp;&nbsp;:&nbsp;Controls the Y height of the object from principle axis.</li>";
+    helpContent = helpContent + "</ul>";
+    helpContent = helpContent + "<p>After sliding the controls as soon as you stop sliding you will get the desired image formed.</p>";
+    helpContent = helpContent + "<p>You can keep changing both controls and see desired result.</p>";
+    helpContent = helpContent + "<h3 style='font-weight: bold;'> Do not  to press any other  button showed on the page like start and left shift and right shift.</h3>";
+
     PIEupdateHelp(helpContent);
 }
 
 var infoContent;
 function initialiseInfo() {
-    infoContent="";
-    infoContent=infoContent+"<h2>Image Formation By Concave Mirror Concepts</h2>";
-    infoContent=infoContent+"<h3>About the experiment</h3>";
+    infoContent =  "";
+    infoContent = infoContent + "<h2>Image Formation By Concave Mirror concepts</h2>";
+    infoContent = infoContent + "<h3>About the experiment</h3>";
+    infoContent = infoContent + "<p>The experiment shows  a how Images are affected when object moves on principle axis.</p>";
+    infoContent = infoContent + "<h3>Image Formation</h3>";
+    infoContent = infoContent + "<p>Two small circle on principle axis Represents Mirror's Center and focalpoint </p>";
+
+    infoContent = infoContent + "<p>When a ray  passed from top of object parallel to principle axis after reflection it Returns through Focus  Point of Concave Mirror.</p>";
+    infoContent = infoContent + "<p>When a another ray pass through center of mirror from top of object after reflection it returns on same path.</p>";
+    infoContent = infoContent + "<p>Where these two rays intersect each other image is formed.</p>";
+    infoContent = infoContent + "<p>If image formed is below Principle axis it is called real image and it's also reverse in orientation.</p>";
+    infoContent = infoContent + "<p>If image formed is above the principle axis it is called virtual image and it's orientation is same as object .</p>";
     PIEupdateInfo(infoContent);
 }
 
@@ -255,8 +273,8 @@ function initialiseOtherVariables() {
     principleAxisEndX=12;
     principleAxisEndY=0;
 
-
-    myObjPositionX1=-5;
+    dottedLineCreated=false;
+    myObjPositionX1=-1;
     myObjPositionY1=0;
     myObjPositionX2=myObjPositionX1;
     myObjPositionY2=0.6;
@@ -322,16 +340,25 @@ function intersectionByCircle() {
     if(myMirrorCenterX==myObjPositionX2)
         return [myMirrorCenterX,myMirrorCenterY+myMirrorRadius]
     else {
+        console.log("mirrorcebtery"+myMirrorCenterY);
+        console.log("myobjpositiony2"+myObjPositionY2);
+        console.log("mymirror center x"+myMirrorCenterX);
+        console.log("mymirror positionx2"+myObjPositionX2);
         var x, y;
-        var d = Math.sqrt(Math.pow(-2 * myMirrorCenterX * cm + 10, 2) - 4 * (1 + cm) * cm * Math.pow(myMirrorCenterX, 2));
-        console.log("Math.pow(2*myMirrorCenterX*cm+10,2)" + Math.pow(2 * myMirrorCenterX * cm + 10, 2));
+        var d1=Math.pow((-2 * myMirrorCenterX * cm + 10), 2);
+        var d2=4 * (1 + cm) * cm * Math.pow(myMirrorCenterX, 2);
+        console.log("d1-d2:"+(d1-d2));
+        var d ;
+
+        d= Math.sqrt(d1-d2);
+        console.log("Math.pow(2*myMirrorCenterX*cm+10,2)" + Math.pow(-2 * myMirrorCenterX * cm + 10, 2));
         console.log("4*(1+cm)*cm*Math.pow(myMirrorCenterX,2)" + 4 * (1 + cm) * cm * Math.pow(myMirrorCenterX, 2));
-        var r1 = (-(-2 * myMirrorCenterX * cm + 10) + d) / (2 * (1 + cm));
-        var r2 = (-(-2 * myMirrorCenterX * cm + 10) - d) / (2 * (1 + cm));
-        if (r1 < r2 && myObjPositionX2 > myMirrorFocalPointX)
-            x = r2;
+        var r1 = (-(-2 * myMirrorCenterX * cm +10) + d) / (2 * (1 + cm));
+        var r2 = (-(-2 * myMirrorCenterX * cm+10) - d) / (2 * (1 + cm));
+        if (myObjPositionX2>myMirrorCenterX)
+            x = r2>r1?r2:r1;
         else
-            x = r1;
+            x = r2>r1?r1:r2;
 
         console.log("dddd" + d);
         y = cm * (x - myMirrorCenterX);
@@ -339,6 +366,7 @@ function intersectionByCircle() {
         console.log("xMmmmm" + x);
         console.log("ymmmmm" + y);
         return [x, y];
+
     }
 }
 function loadExperimentElements() {
@@ -349,39 +377,7 @@ function loadExperimentElements() {
     initialiseInfo();
     initialiseScene();
     initialiseOtherVariables();
- console.log("mymirrorcenterx:"+myMirrorCenterX);
-    //
-   //  var geometry = new THREE.BoxGeometry( 2, mySceneH * 2, 100 );
-   //  var material = new THREE.MeshLambertMaterial( {color: 0xaa0000} );
-   //  var myLeft = new THREE.Mesh( geometry, material );
-   //  myLeft.position.set(-7, mySceneCenterX, 0.0);
-   //  myLeft.receiveShadow = true;
-   //  PIEaddElement(myLeft);
-   //
-   //
-   //  geometry = new THREE.BoxGeometry( mySceneW * 2, 2, 100);
-   //  material = new THREE.MeshLambertMaterial( {color: 0xaaaaaa} );
-   // var  myFloor  = new THREE.Mesh( geometry, material );
-   //  // myFloor.lookAt(new THREE.Vector3(0,1,0));
-   //  myFloor.position.set(mySceneCenterX, -7, 0.0);
-   //  myFloor.receiveShadow = true;
-   //  PIEaddElement(myFloor);
-   //
-   //
-   //  geometry = new THREE.BoxGeometry( mySceneW * 2, 2, 100 );
-   //  material = new THREE.MeshLambertMaterial( {color: 0xffffff} );
-   //  var myCeiling = new THREE.Mesh( geometry, material );
-   //  myCeiling.position.set(mySceneCenterX,7, 0.0);
-   //  myFloor.receiveShadow = true;
-   //  PIEaddElement(myCeiling);
-   //
-   //  geometry = new THREE.BoxGeometry( 2, mySceneH * 2, 100 );
-   //  material = new THREE.MeshLambertMaterial( {color: 0xaa0000} );
-   //  var myRight = new THREE.Mesh( geometry, material );
-   //  myRight.position.set(7, mySceneCenterY, 0.0);
-   //  myRight.receiveShadow = true;
-   //  PIEaddElement(myRight);
-//Mirror center
+    //Mirror center
     var curve = new THREE.EllipseCurve(
         myMirrorCenterX,  myMirrorCenterY,            // ax, aY
         0.1, 0.1,           // xRadius, yRadius
@@ -396,7 +392,7 @@ function loadExperimentElements() {
     var center = new THREE.Line( geometry, material );
     // myMirror.position.set(myMirrorCenterX,myMirrorCenterY,0);
     PIEaddElement(center);
-//mirror focus point
+    //mirror focus point
     var curve = new THREE.EllipseCurve(
         myMirrorFocalPointX,  myMirrorFocalPointY,            // ax, aY
         0.1, 0.1,           // xRadius, yRadius
@@ -411,7 +407,6 @@ function loadExperimentElements() {
     var focus = new THREE.Line( geometry, material );
     // myMirror.position.set(myMirrorCenterX,myMirrorCenterY,0);
     PIEaddElement(focus);
-
     //Mirror
     var curve = new THREE.EllipseCurve(
         myMirrorCenterX,  myMirrorCenterY,            // ax, aY
@@ -425,7 +420,7 @@ function loadExperimentElements() {
     var material = new THREE.LineBasicMaterial( { color : 0xffff00 } );
     // Create the final object to add to the scene
     myMirror = new THREE.Line( geometry, material );
-   // myMirror.position.set(myMirrorCenterX,myMirrorCenterY,0);
+    //myMirror.position.set(myMirrorCenterX,myMirrorCenterY,0);
     PIEaddElement(myMirror);
     // Principle Axis
     var princMaterial = new THREE.LineBasicMaterial({
@@ -435,65 +430,43 @@ function loadExperimentElements() {
     princGeometry.vertices.push(
         new THREE.Vector3(princepleAxisStartX, princpleAxisStartY, 0 ),
         new THREE.Vector3( principleAxisEndX, principleAxisEndY, 0 )
-
     );
     myPrincipleLine = new THREE.Line( princGeometry, princMaterial );
     PIEaddElement(myPrincipleLine);
-
-    // //Object
-
-
+    //Object
     var sourcePos = new THREE.Vector3(myObjPositionX1, myObjPositionY1, 0);
     var targetPos = new THREE.Vector3(myObjPositionX2, myObjPositionY2, 0);
     var direction = new THREE.Vector3().subVectors(targetPos, sourcePos);
     myObject = new THREE.ArrowHelper(direction.clone().normalize(), sourcePos, direction.length(), 0xFAF5F5,0.5,0.2);
-
     PIEaddElement(myObject);
-
-
-
     //Incoming Ray  Parallel to the Principle Axis After Reflection It Goes by Focal Point
-
     var sourcePos = new THREE.Vector3(myObjPositionX2, myObjPositionY2, 0);
-
     var x=getPositionOfInterSectionX(myObjPositionY2);
     var targetPos = new THREE.Vector3(x,myObjPositionY2,0);
     var direction = new THREE.Vector3().subVectors(targetPos, sourcePos);
     myRayParallelToPrincipleLine = new THREE.ArrowHelper(direction.clone().normalize(), sourcePos, direction.length(), 0xFA0A1A);
     PIEaddElement(myRayParallelToPrincipleLine);
-
-   //  myImgPositionX1=getPositionOfImageX();
-   //  myImgPositionY1=0;
-   //  myImgPositionX2=myImgPositionX1;
-   //  myImgPositionY2 =getHeightOfImageY(myImgPositionX1);
-   //
     //Incoming Ray After Reflection From Mirror
     var sourcePos = new THREE.Vector3(x, myObjPositionY2, 0);
     var targetPos = new THREE.Vector3(myMirrorFocalPointX, myMirrorFocalPointY, 0);
     var direction = new THREE.Vector3().subVectors(targetPos, sourcePos);
     myRefRayThroughFocusPoint = new THREE.ArrowHelper(direction.clone().normalize(), sourcePos, 10, 0xFA0A1A);
     PIEaddElement(myRefRayThroughFocusPoint);
-
-   //  //Incoming ray through center point
-
-
+    //Incoming ray through center point
     var sourcePos = new THREE.Vector3(myObjPositionX2, myObjPositionY2, 0);
     var targetPos = new THREE.Vector3(myMirrorCenterX, myMirrorCenterY, 0);
     var direction = new THREE.Vector3().subVectors(targetPos, sourcePos);
     myRayThroughCenter = new THREE.ArrowHelper(direction.clone().normalize(), sourcePos, myMirrorRadius, 0x00ff00);
     PIEaddElement(myRayThroughCenter);
-     // reflection From mirror
+    // reflection From mirror
     var x1=intersectionByCircle();
     console.log("x1111111"+x1);
     var sourcePos = new THREE.Vector3(myObjPositionX2,myObjPositionY2, 0);
     var targetPos = new THREE.Vector3(x1[0],x1[1], 0);
     var direction = new THREE.Vector3().subVectors(targetPos, sourcePos);
-    myRefRayThroughCenter = new THREE.ArrowHelper(direction.clone().normalize(), sourcePos, myMirrorRadius, 0x00ff00);
-    //myRefRayThroughCenter.setLength(Math.sqrt(Math.pow(x1[0]-myObjPositionX2,2)+Math.pow(x1[1]-myObjPositionY2),2));
-
+    myRefRayThroughCenter = new THREE.ArrowHelper(direction.clone().normalize(), sourcePos, 0, 0x00ff00);
     PIEaddElement(myRefRayThroughCenter);
-
-   //  //Image
+    //Image
    var x11=twoLineIntersectionPoint(x);
     console.log(x11);
     var sourcePos = new THREE.Vector3(x11[0],0, 0);
@@ -505,17 +478,17 @@ function loadExperimentElements() {
    if(myObjPositionX1>myMirrorFocalPointX)
    {
 
-       var sourcePos = new THREE.Vector3(x1[0],x1[1], 0);
+       var sourcePos = new THREE.Vector3(myObjPositionX2,myObjPositionY2, 0);
        var targetPos = new THREE.Vector3(x11[0],x11[1], 0);
        var direction = new THREE.Vector3().subVectors(targetPos, sourcePos);
-       dottedRayViaCenter= new THREE.ArrowHelper(direction.clone().normalize(), sourcePos, 10, 0x978d9b,0.5,0);
+       dottedRayViaCenter= new THREE.ArrowHelper(direction.clone().normalize(), sourcePos, 10, 0x978d9b,0,0);
        PIEaddElement(dottedRayViaCenter);
 
 
        var sourcePos = new THREE.Vector3(x,myObjPositionY2, 0);
        var targetPos = new THREE.Vector3(x11[0],x11[1], 0);
        var direction = new THREE.Vector3().subVectors(targetPos, sourcePos);
-       dottedRayViaFocus= new THREE.ArrowHelper(direction.clone().normalize(), sourcePos, 10, 0x978d9b,0.5,0);
+       dottedRayViaFocus= new THREE.ArrowHelper(direction.clone().normalize(), sourcePos, 10, 0x978d9b,0,0);
        PIEaddElement(dottedRayViaFocus);
    }
 
@@ -529,16 +502,9 @@ function loadExperimentElements() {
 function resetExperiment() {
     //initialise Other Variables
     initialiseOtherVariables();
-
-    /*initialise Object Variable*/
-    myObjPositionX1=myMirrorCenterX;
-    myObjPositionY1=myMirrorCenterY;
-  myObject.position.set(myObjPositionX1,myObjPositionY1,0.0);
+    myObject.position.set(myObjPositionX1,myObjPositionY1,0.0);
 
 }
-
-
-
 function updateExperimentElements(t,dt) {
 
     PIEchangeDisplayText(ObjectPosX,myObjPositionX1);
